@@ -35,7 +35,7 @@ class TicketController extends Component
             ->where('sd.sale_id', $sale->id)
             ->get();
 
-        $printerName = "LR2000";
+        $printerName = env("PRINTER_NAME");
         $connector = new WindowsPrintConnector($printerName);
         $printer = new Printer($connector);
         $printer->setJustification(Printer::JUSTIFY_CENTER);
