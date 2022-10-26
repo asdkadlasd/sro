@@ -7,12 +7,12 @@ use App\Models\Sale;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
-/*
-Conector para windows
+
+/* Conector para windows */
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-*/
+
 /* Connector para linux */
-use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+/* use Mike42\Escpos\PrintConnectors\FilePrintConnector; */
 use Mike42\Escpos\Printer;
 
 
@@ -35,8 +35,8 @@ class TicketController extends Component
             ->where('sd.sale_id', $sale->id)
             ->get();
 
-        $printerName = env("PRINTER_NAME");
-        $connector = new FilePrintConnector("/dev/usb/lp0");
+        $printerName = "LR2000";
+        $connector = new WindowsPrintConnector($printerName);
         $printer = new Printer($connector);
         $printer->setJustification(Printer::JUSTIFY_CENTER);
         $printer->setEmphasis(true);
